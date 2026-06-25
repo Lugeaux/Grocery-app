@@ -11,9 +11,22 @@ import pandas as pd
 import os
 import datetime
 
+# --- CSS FOR PRINTING ---
+st.markdown(""" 
+<style>
+@media print {
+    [data-testid="stSidebar"], .stButton, header {
+        display: none !important;
+    }
+}
+</style>
+"""", unsafe_allow_html=True)
+
+
+
 
 #  ------- HELPER FUNCTIONS ----------
-def load_list():
+def load_data():
     """Reads the file and returns a list of dictionaries."""
     if not os.path.exists("my_grocery_list.txt"):
         return[]
@@ -29,6 +42,7 @@ def load_list():
     except Exception as e:
         st.error(f"Could not load your grocery list: {e}")
     return grocery_list
+    pass
     
     
     
@@ -52,6 +66,7 @@ if 'grocery_list' not in st.session_state:
 
 
 # ---- SIDEBAR MENU ----
+st.sidebar.title("Navigation")
 menu = st.sidebar.selectbox("Menu", ["View List", "Add Item", "Remove Item", "Backup List", "View By Category", "Backup" "Clear List"])
 
 if menu == "View List":
@@ -93,7 +108,8 @@ if menu == "View List":
         st.dataframe(df, use_container_width=True)
         
        
-        
+# --- MAIN APP CONTENT ---
+st.header("Your Grocery List")
         
 elif menu == "Add Item":
     st.header("Add New Item")
@@ -179,5 +195,15 @@ elif menu == "Clear List":
         save_list(st.session_state.grocery_list)
         st.success("List cleared!")
         st,rerun()
+        
+        
+# --- PRINT BUTTON ---
+if st.button("Print My Grocery List"):
+    js = "window.print();"
+    st.components.v1.html(f"<script>{js}</script>", height=0)
+        
+        
+        
+        
 
     
