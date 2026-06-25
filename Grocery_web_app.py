@@ -61,7 +61,7 @@ st.set_page_config(page_title="Grocery App")
 st.title("My Grocery List")
 
 if 'grocery_list' not in st.session_state:
-    st.session_state.grocery_list = load_list()
+    st.session_state.grocery_list = load_data()
 
 
 
