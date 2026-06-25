@@ -111,7 +111,7 @@ if menu == "View List":
 # --- MAIN APP CONTENT ---
 st.header("Your Grocery List")
         
-elif menu == "Add Item":
+if menu == "Add Item":
     st.header("Add New Item")
     with st.form("add form", clear_on_submit=True):
         name = st.text_input("Item Name")
