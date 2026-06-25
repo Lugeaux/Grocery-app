@@ -1,0 +1,7 @@
+bacon,2,Meat
+milk,1,Dairy
+green peppers,4,Produce
+red peppers,4,Produce
+eggs ,1,Cold items
+bread,2,Pantry
+tea,1,Pantry
